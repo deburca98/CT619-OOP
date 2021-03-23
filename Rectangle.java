@@ -1,76 +1,68 @@
-package workshop1;
-/* A rectangle class implements a simple rectangle class*/
-import javax.swing.JOptionPane;
+/*A more sophisticated Rectangle class  
+ * That stores only Cartesian coordinates
+ * of 4 corners of the rectangle*/
+
 public class Rectangle 
 {
-	// two variables declared 
+	// Instances
+	// using float as its requires less space
+	// constraints on space dictated by problem 
+	// requirements no x or y larger than 20.0
+	
 	private float length;
 	private float width;
-
-	// Constructors this sets default values
-	public Rectangle()
-	{
-		/* using keyword this to refer to variables/ Attributes 
-		 * declared above 
-		 */
-		this.length= 1;// default setting
-		this.width =1; // default setting 
-				
-	}
-	/******************Calculation*******************/
-	//method to calculate the Area
-	public float Area() 
-	{
-		return (this.length*this.width);		
-	}
-	// method to calculate the Perimeter
-	// multiply length variable by 2  and add to width multiplied by 2 
-	public float Perimeter()
-	{
-		return (this.length *2)+ (this.width *2);	
-	}
+	private float x1,x2,x3,x4;
+	private float y1,y2,y3,y4;
 	
-	/******************Setters**********************/
-	// length setter with error detection and information to user on invalid entry amount
-	public void setLength(float lth)
-	{
-		if(lth>0.0 && lth <20.0)
-		{
-		this.length =lth;
-		}
-		else {
-			JOptionPane.showMessageDialog(null, 
-					"Invalid length , values must be > 0.0 and < 20.0 you entered " +lth);
-			System.exit(0);	
-		}
-			
-	}
-`	// width setter with error detection and information to user on invalid entry amount
-	public void setWidth(float wth)
-	{
-		if(wth>0.0 && wth <20.0)
-		{
-		this.width =wth;
-		}
-		else {
-			JOptionPane.showMessageDialog(null, 
-					"Invalid width, values must be > 0.0 and < 20.0 you entered " + wth);
-			System.exit(0);	
-		}
-			
-	}
+	// constructor n.b must have same name as class 
 	
-	/******************Getters**********************/
-	
-	public float getLength()
+	public Rectangle (float x1,float x2,float x3,float x4,float y1,float y2,float y3,float y4) 
 	{
-		return length;
-	}
-	
-	public float getWidth()
-	{
-		return width;
-	}
-
+		this.x1=x1;
+		this.x2=x2;
+		this.x3=x3;
+		this.x4=x4;
+		this.y1=y1;
+		this.y2=y2;
+		this.y3=y3;
+		this.y4=y4;
+		//
 		
+	}
+	
+	/* Check for first quadrant position 
+	 * This means the x value can't be 
+	 * less than zero or greater than 20
+	 * same check for y
+	 */
+	//public 
+	
+	/**** insert method here ****/
+	
+	/*method to find length 
+	 * needs to extrapolate length from 
+	 * Coordinates and assign it to this.length*/
+	
+	/* method to find width and assign it to 
+	 * this . length using coordinates*/
+	
+	/* method to tell if its square isSquare
+	 * It is a square if the length is the same as width.
+	 * 
+	 */
+	
+	/*
+	 * calculate Area
+	 * needs length * width
+	 *  */
+	
+	/* Calculate perimeter
+	needs to call length and width */
+	
+	/* get length*/
+	/*get width*/
+	
+	/* get isSquare
+	
+
 }
