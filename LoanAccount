@@ -1,0 +1,88 @@
+package week4;
+
+
+
+public class LoanAccount extends BankAccount {
+	private double overdraftLimit;
+	
+	public LoanAccount() {
+		this( "Default Name", "123456",0.0);
+	}
+	
+	public LoanAccount(String name, String accountNumber, double accountBalance) {
+		super(name, accountNumber, accountBalance);
+		
+		this.name = name;
+		this.accountNumber = accountNumber;
+		this.accountBalance = accountBalance;
+	
+	}
+// method call deposit and withdrawl and overide use the "@override" keyword
+
+	
+	@Override
+//	same method signature as superclass
+	public void withdrawal(double withdrawl) {
+		if(accountBalance-withdrawl< overdraftLimit) {
+			 throw new IllegalArgumentException("insufficient funds you have reached overdraft limit");//();
+			}else{
+				this.accountBalance -= withdrawl;
+				
+				//toString(); if 
+			}
+		
+	}
+	
+	public void deposit(double depositAmount) {
+		// calling the superclass 
+		super.deposit(depositAmount);
+	}
+	// returns a different value to inform user they are being charged interest when in overdraft
+	@Override
+	public String toString() {
+		if (accountBalance <0){
+		return("The Balance for  " + getName() + " With Account Number " + getAccountNumber() 
+				+ " is €" + getAccountBalance() + " Your Overdraft limit is € " + getOverdraftLimit() + 
+				"  The intrest charged is € " + projectinterest() );
+			}
+		else {
+			return("The Balance for  " + getName() + " With Account Number " + getAccountNumber()  
+					+ " is " + getAccountBalance()  + " Your Overdraft limit is " + overdraftLimit);
+		}
+		
+				
+			
+		
+	}
+		
+
+
+	public double getOverdraftLimit() {
+		return overdraftLimit;
+	}
+
+
+	public void setOverdraftLimit(double overdraftLimit) {
+		// sets overdraft limit to negative by multiplying by -1
+		this.overdraftLimit = overdraftLimit*-1;
+	}
+	
+	public double projectinterest() {
+		double interest =0;
+		if (accountBalance >0){
+			interest =0;	
+		}else {
+			interest =(accountBalance*interestRate)*-1;
+		}
+			
+		return interest;
+			
+		
+		
+		
+		
+	}
+	
+	
+	
+}
