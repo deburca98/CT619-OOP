@@ -1,0 +1,82 @@
+package week4;
+
+
+
+	public class BankAccount {
+	protected  String name;// Final as they do not need to be modified after initialized
+	protected  String accountNumber;// I used a string here to be able to use numeric and Alpha numeric characters
+	protected double accountBalance=0;// look at making protected
+	protected double interestRate = 0.0125; // changed to protected from private so it would work in loan account
+	
+	
+	
+	//default constructor if no parameters are passed used to set up account
+	// this calls the main constructor put in as a control
+	public BankAccount() {
+		this( "Default Name", "123456",0.0);
+	}
+	// constructor 
+	public BankAccount(String name, String accountNumber, double accountBalance) {
+		
+		this.name = name;
+		this.accountNumber = accountNumber;
+		this.accountBalance = accountBalance; 
+		
+	}
+	
+	public void deposit(double depositAmount) {
+		if (depositAmount <0) {
+			throw new IllegalArgumentException(" Deposit Values must be positive numbers");
+		}
+		this.accountBalance += depositAmount;
+		//System.out.println(accountBalance);
+		//toString();
+	}
+	
+	public void withdrawal(double withdrawl) {
+		if(accountBalance-withdrawl<0) {
+		 throw new IllegalArgumentException("insufficient funds");//();
+		}else {
+			this.accountBalance -= withdrawl;
+			
+		}
+		
+	}
+	// overriding the toSring() method as part of a class function
+	@Override
+	public String toString() {
+		return("The Balance for  " +getName() + " With Account Number " + getAccountNumber() 
+				+ " is " + getAccountBalance());
+	}
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+	public double getAccountBalance() {
+		return accountBalance;
+	}
+
+	public void setAccountBalance(double accountBalance) {
+		this.accountBalance = accountBalance;
+	}
+	
+	
+	//constructor
+	
+	
+
+}
