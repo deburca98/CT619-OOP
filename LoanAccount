@@ -1,25 +1,22 @@
 package week4;
 
-
-
 public class LoanAccount extends BankAccount {
 	private double overdraftLimit;
-	
+	// default constructor in case nothing is entered
 	public LoanAccount() {
-		this( "Default Name", "123456",0.0);
+		this( "Default Name", "123456");
 	}
 	
-	public LoanAccount(String name, String accountNumber, double accountBalance) {
-		super(name, accountNumber, accountBalance);
+	public LoanAccount(String name, String accountNumber) {
+		super(name, accountNumber );
 		
 		this.name = name;
 		this.accountNumber = accountNumber;
-		this.accountBalance = accountBalance;
+		this.accountBalance=0;
 	
 	}
-// method call deposit and withdrawl and overide use the "@override" keyword
+// method call deposit and withdraw and override use the "@override" keyword
 
-	
 	@Override
 //	same method signature as superclass
 	public void withdrawal(double withdrawl) {
@@ -28,7 +25,7 @@ public class LoanAccount extends BankAccount {
 			}else{
 				this.accountBalance -= withdrawl;
 				
-				//toString(); if 
+				
 			}
 		
 	}
@@ -36,53 +33,47 @@ public class LoanAccount extends BankAccount {
 	public void deposit(double depositAmount) {
 		// calling the superclass 
 		super.deposit(depositAmount);
+		
 	}
 	// returns a different value to inform user they are being charged interest when in overdraft
 	@Override
 	public String toString() {
-		if (accountBalance <0){
-		return("The Balance for  " + getName() + " With Account Number " + getAccountNumber() 
-				+ " is €" + getAccountBalance() + " Your Overdraft limit is € " + getOverdraftLimit() + 
-				"  The intrest charged is € " + projectinterest() );
+		if (accountBalance >0){
+			return String.format("%s %s %s: %s %s %.2f","The Balance for", name, "With Account Number "
+					,accountNumber,"is €", accountBalance);
 			}
 		else {
-			return("The Balance for  " + getName() + " With Account Number " + getAccountNumber()  
-					+ " is " + getAccountBalance()  + " Your Overdraft limit is " + overdraftLimit);
+			//return("The Balance for  " + getName() + " With Account Number " + getAccountNumber()  
+	//				+ " is " + getAccountBalance()  + " Your Overdraft limit is " + overdraftLimit);
+			return String.format("%s %s %s: %s %s %.2f %n%s %.2f %n%s %.2f","The Balance for", name, 
+					"With Account Number "
+					,accountNumber,"is €", accountBalance,"Your Overdraft limit is €", overdraftLimit, 
+					"You have been charged the following amount in interest: €", projectinterest() );
 		}
-		
 				
-			
-		
 	}
 		
-
-
 	public double getOverdraftLimit() {
 		return overdraftLimit;
 	}
-
 
 	public void setOverdraftLimit(double overdraftLimit) {
 		// sets overdraft limit to negative by multiplying by -1
 		this.overdraftLimit = overdraftLimit*-1;
 	}
-	
+	// calculate interest:
 	public double projectinterest() {
 		double interest =0;
 		if (accountBalance >0){
 			interest =0;	
 		}else {
-			interest =(accountBalance*interestRate)*-1;
+			interest =(accountBalance*interestRate)*-1; 
+			// as interest rate is converted to negative
+			this.accountBalance += (interest*-1);
 		}
 			
-		return interest;
-			
-		
-		
-		
-		
+		return interest;				
 	}
-	
-	
-	
+		
 }
+
