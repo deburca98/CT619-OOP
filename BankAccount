@@ -1,41 +1,36 @@
 package week4;
 
-
-
 	public class BankAccount {
-	protected  String name;// Final as they do not need to be modified after initialized
+	protected  String name;
 	protected  String accountNumber;// I used a string here to be able to use numeric and Alpha numeric characters
-	protected double accountBalance=0;// look at making protected
+	protected double accountBalance;// look at making protected
 	protected double interestRate = 0.0125; // changed to protected from private so it would work in loan account
-	
-	
 	
 	//default constructor if no parameters are passed used to set up account
 	// this calls the main constructor put in as a control
 	public BankAccount() {
-		this( "Default Name", "123456",0.0);
+		this( "Default Name", "123456");
 	}
 	// constructor 
-	public BankAccount(String name, String accountNumber, double accountBalance) {
+	public BankAccount(String name, String accountNumber) {
 		
 		this.name = name;
 		this.accountNumber = accountNumber;
-		this.accountBalance = accountBalance; 
+		this.accountBalance = 0.0; 
 		
 	}
-	
+	// deposit method
 	public void deposit(double depositAmount) {
 		if (depositAmount <0) {
 			throw new IllegalArgumentException(" Deposit Values must be positive numbers");
 		}
 		this.accountBalance += depositAmount;
-		//System.out.println(accountBalance);
-		//toString();
+		
 	}
-	
+	// Withdraw method 
 	public void withdrawal(double withdrawl) {
 		if(accountBalance-withdrawl<0) {
-		 throw new IllegalArgumentException("insufficient funds");//();
+		 throw new IllegalArgumentException("insufficient funds");
 		}else {
 			this.accountBalance -= withdrawl;
 			
@@ -45,11 +40,13 @@ package week4;
 	// overriding the toSring() method as part of a class function
 	@Override
 	public String toString() {
-		return("The Balance for  " +getName() + " With Account Number " + getAccountNumber() 
-				+ " is " + getAccountBalance());
+		//return("The Balance for  " +getName() + " With Account Number " + getAccountNumber() 
+		//		+ " is €" + getAccountBalance());
+		return String.format("%s %s %s: %s %s %.2f","The Balance for", name, "With Account Number "
+				,accountNumber,"is €", accountBalance);
 	}
 	
-	
+	// Getters & Setters block
 	public String getName() {
 		return name;
 	}
@@ -73,10 +70,6 @@ package week4;
 	public void setAccountBalance(double accountBalance) {
 		this.accountBalance = accountBalance;
 	}
-	
-	
-	//constructor
-	
-	
+		
 
 }
