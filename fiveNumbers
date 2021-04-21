@@ -1,0 +1,41 @@
+package Week6;
+
+import java.util.Scanner;
+
+public class fiveNumbers {
+
+	private static Scanner scanner =new Scanner(System.in);
+
+	public static void main(String[] args) {
+		
+		
+		int[] myIntArray = getintegers(5);
+		for(int i=0; i< myIntArray.length;i++) {
+			System.out.println(myIntArray[i]);
+		}
+	}
+		
+		
+		
+	
+	
+	public static int[] getintegers(int number) {
+	
+		System.out.println("Enter" + number + "Integer values.\r");
+		int [] values = new int[number];
+		for(int i =0; i< values.length; i++) {
+			
+			values[i] = scanner.nextInt();
+		
+		
+			
+		}
+		return values;
+		
+	}
+}
+	// can create a print array method like the one at 
+	//https://www.udemy.com/course/java-the-complete-java-developer-course/learn/lecture/3323780#questions/1941926
+	//time 13:06 (lecture 99)
+	
+
