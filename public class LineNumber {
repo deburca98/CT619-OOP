@@ -1,0 +1,100 @@
+package week6t;
+
+/**************************************************************************
+              	
+ *************************************************************************/
+
+
+
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+
+
+public class LineNumber {
+private String fileName;
+
+public LineNumber(String fileName) throws FileNotFoundException {
+
+	this.setFileName(fileName);
+}
+
+public String getFileName() {
+	return fileName;
+}
+
+public void setFileName(String fileName) throws FileNotFoundException {
+	lineCount(fileName);
+}
+
+public int lineCount(String fileName)throws FileNotFoundException {
+	int count =0;
+	String fName = fileName;
+	
+	String line;
+	try {
+	BufferedReader fileIn =new BufferedReader( new FileReader(fName));
+		
+	while ((line =fileIn.readLine()) != null) {
+		count ++;
+		fileIn.close();
+		}
+	}
+	catch (FileNotFoundException e)
+	{
+		// show where the error is by printing the stack 
+		e.printStackTrace();
+		System.out.println("No File Found, error in lineCount Method");
+		System.exit(0);
+	} catch (IOException e) {
+		// extra catch for while loop file in
+		e.printStackTrace();
+	}
+	
+	return count;
+	
+}
+ public int characterCount(String fileName)throws FileNotFoundException {
+	 int count=0;
+	 try {
+	File file = new File(fileName);
+	FileInputStream fileIn = new FileInputStream(file);
+	 byte[] bytesArray= new byte [(int)file.length()];
+	 fileIn.read(bytesArray);
+	 String s = new String(bytesArray);
+	 String [] data =s.split(" ");
+	 for (int i =0; i <data.length; i++) {
+		 count ++;
+		 fileIn.close();
+	 }
+	 }
+	 catch (FileNotFoundException e) {
+		 e.printStackTrace();
+			System.out.println("No File Found, Error at charactercount method");
+			System.exit(0);
+			
+	} catch (IOException e) {
+		
+		e.printStackTrace();
+		System.out.println("error at byte array");
+	}	
+	return count; 
+	//https://www.tutorialspoint.com/How-to-count-the-number-of-words-in-a-text-file-using-Java	
+	 
+ }
+
+
+	@Override
+	public String toString() {
+		return String.format("%s, %s %s %d", "The Number of lines in ",  fileName , "is" , getFileName());
+		
+	}
+	
+}
+
+
