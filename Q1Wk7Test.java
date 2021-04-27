@@ -4,17 +4,17 @@ import javax.swing.JFrame;
 
 
 
-public class Q1Wk7Test  {
+public class Q1Wk7Test implements Runnable{
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Ball");
-		addBall ball = new addBall();
+		Ball ball = new Ball();
 		frame.add(ball);
 		frame.setSize(400,400);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		// how to use thread but we are using runnable
+		
 		while(true) {
 			ball.move();
 			ball.repaint();
@@ -25,6 +25,13 @@ public class Q1Wk7Test  {
 				e.printStackTrace();
 			}
 		}
+		
+	}
+
+	@Override
+	public void run() {
+		Thread t = new Thread(this);
+		t.start();
 		
 	}
 
