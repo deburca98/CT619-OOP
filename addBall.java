@@ -1,8 +1,12 @@
 package sandbox;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 import javax.swing.JPanel;
+
+
+
 
 
 public class Ball extends JPanel   {
@@ -13,9 +17,13 @@ public class Ball extends JPanel   {
 	// I imported this class to create the random position 
 	// creates a random position for the ball on startup
 	private Random randomGenerator = new Random();
+	// generates random x & y position in move method
 	int x=0 + randomGenerator.nextInt( 201 ), y=0+ randomGenerator.nextInt( 201 );
-	int anglex =1, angley =1;
-	
+	int anglex =1, angley =1;// used for changing direction 
+	// generate random colors 
+	float red = randomGenerator.nextFloat();
+	float green= randomGenerator.nextFloat();;
+	float blue =randomGenerator.nextFloat();
 	
 	// this method moves the ball
 	void move(){
@@ -34,8 +42,14 @@ public class Ball extends JPanel   {
 	@Override
 	public void paint (Graphics g) {
 		super.paint(g);
-		g.fillOval(x, y , 50, 50); // ball is set to 50 by 50
+		// create new random colour by changing the float values for colors
+		Color randomColor = new Color(red, green ,blue);
+		g.setColor(randomColor);
+		g.fillOval(x, y , 50, 50);// ball is set to 50 by 50
 		
+		
+		
+			
 	
 	}
 
