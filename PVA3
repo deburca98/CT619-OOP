@@ -1,0 +1,249 @@
+package Exam4;
+
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+
+public class PVA3 implements ActionListener  {
+	
+	private static JLabel monthLabel,yearLabel, vatLabel, qtyLabel;
+	private static JTextField yearText,monthText, vatText,qtyText;
+	private static JButton b1, b2,b3, b4;
+	// made these private as good practice and static so they can be accessed easier 
+	
+	public static void main(String[] args) {
+		int year = 0 , month = 0 ;
+		String vatrefString = null ;
+		float goodsfloat = 0 ;
+		PVA pva = new PVA(year, month, vatrefString, goodsfloat);
+		PVA pva1 = new PVA(year, month );
+		
+		JFrame frame = new JFrame("PVA Input ");
+		JPanel panel = new JPanel();
+		frame.setSize(500,500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		frame.add(panel);
+		
+		panel.setLayout(null); // look this up 
+		//https://www.youtube.com/watch?v=iE8tZ0hn2Ws&t=965s
+		
+		yearLabel = new JLabel("Year");
+		yearLabel.setBounds(10, 20 ,80,25);
+		panel.add(yearLabel);
+		
+		// text fields
+		yearText =new JTextField();
+		yearText.setBounds(150,20,165,25);
+		panel.add(yearText);
+		
+		monthLabel = new JLabel("Month");
+		monthLabel.setBounds(10, 50 ,80,25);// X , y, width , height
+		panel.add(monthLabel);
+		
+		//text fields
+		monthText =new JTextField();
+		monthText.setBounds(150,50,165,25);
+		panel.add(monthText);
+		
+		
+		// adding buttons
+		b1 = new JButton("Click Here For Vat?");
+		b1.setBounds(150, 90,165,25 );
+		// to add an action listner need to add method
+		//b1.addActionListener(new PVA3());// pva class is not an actionlistener object so 
+		//add  implements to class declaration
+		panel.add(b1);
+		
+		
+		vatLabel = new JLabel("VAT Reference");
+		vatLabel.setBounds(10, 120 , 100,25);
+		panel.add(vatLabel);
+		
+		// text fields
+		vatText =new JTextField();
+		vatText.setBounds(150,120,165,25);
+		// defaults to not enabled using set enabled method
+		vatText.setEnabled(false);
+		panel.add(vatText);
+		
+		qtyLabel = new JLabel("Goods Quantity");
+		qtyLabel.setBounds(10, 150 , 100,25);
+		panel.add(qtyLabel);
+		
+		// text fields
+		// qty = quantity
+		qtyText =new JTextField();
+		qtyText.setBounds(150,150,165,25);
+		// set text to unusable by default 
+		qtyText.setEnabled(false);
+		panel.add(qtyText);
+		
+		
+		/***Save Button*/
+		
+		b2 = new JButton("OK");
+		b2.setBounds(150, 180,165,25 );
+		// to add an action listner need to add method
+		b2.addActionListener(new PVA3());// pva class is not an actionlistener object so 
+		//add  implements to class declaration
+		panel.add(b2);
+		
+		b3 = new JButton("Cancel");
+		b3.setBounds(150, 210,165,25 );
+		// added this to make button more visible as warning to prevent accidental clicking
+		b3.setBackground(Color.RED);
+		b3.setOpaque(true);
+		// to add an action listner need to add method
+		//b3.addActionListener(new PVA3());// pva class is not an actionlistener object so 
+		//add  implements to class declaration
+		panel.add(b3);
+		
+		
+		
+		/*****Save Button******/
+		b4 = new JButton("Save");
+		b4.setBounds(150, 300,165,25 );
+		b4.setBackground(Color.GREEN);
+		b4.setOpaque(true);
+		b4.setEnabled(false);
+		panel.add(b4);
+		
+		
+	
+		frame.setVisible(true);
+		
+		
+		/**Button Action listeners**/
+		//BI is the vat field if this button is clicked the vat 
+		//reference and quantity fields become active	
+		b1.addActionListener(new ActionListener() {
+			@Override
+			// this gets run when i click the button 
+		public void actionPerformed(ActionEvent e) 
+			{
+				// change appearance on clicking vat required button 
+				vatText.setEnabled(true);
+				qtyText.setEnabled(true);
+				// this is to test that button becomes live put in right place 		
+			}
+		});
+//
+		b2.addActionListener(new ActionListener() 
+		{
+		@Override
+		// this gets run when i click the ok button 
+			public void actionPerformed(ActionEvent e) {
+			
+		
+			if (vatText.isEnabled()&& qtyText.isEnabled()) 
+			{
+				pva.setYear((Integer.parseInt(yearText.getText())));
+	
+				pva.setMonth((Integer.parseInt(monthText.getText()))); 
+		
+				pva.setVatreference(vatText.getText());
+				//vatrefString =(vatText.getText());
+				pva.setGoodsAmount(Float.parseFloat(qtyText.getText()));
+				//goodsfloat=(Float.parseFloat(qtyText.getText()));
+			
+				
+		
+			
+				System.out.println(pva.Year());
+				System.out.println( pva.Month());
+				System.out.println( pva.Vatreference());
+				System.out.println( pva.GoodsAmount());
+				
+			
+			}
+			else 
+			{
+				pva.setYear((Integer.parseInt(yearText.getText())));
+				
+				pva.setMonth((Integer.parseInt(monthText.getText()))); 
+				
+				pva.setVatreference("No Vat");
+				//vatrefString =(vatText.getText());
+				pva.setGoodsAmount(0);
+				//goodsfloat=(Float.parseFloat(qtyText.getText()));
+				//year=(Integer.parseInt(yearText.getText()));
+				//month =(Integer.parseInt(monthText.getText()));
+				
+				System.out.println(pva.Year());
+				System.out.println( pva.Month());
+			}
+		
+			b4.setEnabled(true);	
+		}
+		});
+	
+	
+		// cancel button
+		b3.addActionListener(new ActionListener() {
+		
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				int userInput;
+				userInput = JOptionPane.showConfirmDialog(null, "Please confirm you want to exit.", 
+					"NOTE: all data will be lost click no and save data",JOptionPane.YES_NO_OPTION);
+				if (userInput ==0) {
+				// yes returns a zero
+					System.exit(0);// exit the system
+				}
+			}
+		});
+
+
+		b4.addActionListener(new ActionListener() {
+		
+			@Override
+			public void actionPerformed(ActionEvent e) { // this needs to catch an io exceprtion as its a file writer 
+			String pvaDataString;
+			String fileOutString ="C:\\Users\\burked\\eclipse-workspace\\Exam4\\src\\Exam4\\PVAoutput";
+			
+			if (vatText.isEnabled()&& qtyText.isEnabled()) 
+			{
+				pvaDataString= "Year: " + pva.Year()+ "\n"+"Month  #" + pva.Month() +"\n"+ "V.A.T. Reference #: " 
+						+ pva.Vatreference() + "\n" + "Goods Amount: " + pva.GoodsAmount() ;
+			} else {
+				 pvaDataString= "Year: " + pva.Year()+ "\n"+"Month  #" + pva.Month();
+			}
+			int userInput;
+			userInput = JOptionPane.showConfirmDialog(null, "Please confirm your Data is correct.", 
+					"Click yes to Save & no to return",JOptionPane.YES_NO_OPTION);
+			if(userInput == 0) 
+			{
+				try {
+					BufferedWriter writer = new BufferedWriter(new FileWriter(fileOutString));
+					writer.write(pvaDataString);
+					writer.close();
+			
+				} 
+				catch (IOException e2) 
+				{
+					
+				}
+			}
+			};
+	
+		});
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+}
