@@ -1,0 +1,102 @@
+package Exam4;
+
+public class PVA {
+private  int year;
+private  int month;
+private  String vatreference;
+private  float goodsAmount;
+
+
+
+public PVA(int year, int month, String vatreference, float goodsAmount) {
+	
+	this.year = year;
+	this.month = month;
+	this.vatreference = vatreference;
+	this.goodsAmount = goodsAmount;
+	}
+
+// two argument constructor for no VAT option
+	public PVA(int year, int month) {
+		this.year = year;
+		this.month = month;
+	}
+	public PVA() {
+	
+	}
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public void setMonth(int month) {
+		this.month = month;
+	}
+
+	public void setVatreference(String vatreference) {
+		this.vatreference = vatreference;
+	}
+
+	public void setGoodsAmount(float goodsAmount) {
+		this.goodsAmount = goodsAmount;
+	}
+	
+	
+	public  int Year() {
+		// year checker variable
+		int chkYear = year;
+		
+	
+		if( chkYear >2020 && chkYear <2050) {
+			return chkYear;	
+		}
+		else 
+		{
+			throw new IllegalArgumentException("Year must be between 2020 to 2050");
+		}	
+		//return chkYear;		
+	}
+
+
+
+	public int Month() 
+	{
+		int monthOrder = month;
+	
+		
+			if( monthOrder > 0 && monthOrder <=12) 
+			{
+				return monthOrder;
+			} 
+			else
+			{
+				throw new IllegalArgumentException("Month must be between 1 & 12");
+			}	
+			
+		}
+		
+	
+	public String Vatreference() 
+	{
+		String s1= vatreference;
+	// check the length of the string
+		
+		if ( s1.length() <12) {
+			System.out.println("Invalid Character length, "
+					+ "VAT reference number "
+				+ "must be greeater than 12 characters long");
+		
+			}
+			return s1; // else assign it as vat reference number	
+	}
+
+	
+	public Float GoodsAmount() 
+	{
+	// as goods amount can be negative j
+	
+		return goodsAmount;
+	}
+
+	
+}
+
