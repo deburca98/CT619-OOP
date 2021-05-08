@@ -1,0 +1,97 @@
+package Exam4;
+
+public class PVA {
+private static int year;
+private static int month;
+private static String vatreference;
+private static float goodsAmount;
+
+
+
+public PVA(int year, int month, String vatreference, float goodsAmount) {
+	super();
+	PVA.year = year;
+	PVA.month = month;
+	PVA.vatreference = vatreference;
+	PVA.goodsAmount = goodsAmount;
+}
+public static int getYear() {
+	return year;
+}
+public void setYear(int year) {
+	// year checker variable
+	int chkYear = year;
+	// control loop keep asking for year if its not within range
+	boolean yearVal= false;
+	while (yearVal == false);
+	try { if( chkYear <2020 && chkYear> 2050) {
+		System.err.println("Valid Year range is from 2020 - 2050");
+	}else {
+		PVA.year = year;
+		yearVal=true;// change to true to exit
+	}
+		
+	} catch (NumberFormatException nfe) {
+		System.out.println("Cannot accept non numberic values ");	
+	}
+}
+
+public static int getMonth() {
+	return month;
+}
+
+public void setMonth(int month) {
+	int monthOrder = month;
+	boolean monthVal =false;
+	// using a control loop to ensure the correct number is entered for the month
+	while (monthVal == false) {
+		try { if( monthOrder < 0 && monthOrder >12) {
+			/// using this to demonstrate input is wrong 
+			System.err.println("Month must be from 1 to 12");
+			
+		}else {
+			PVA.month = month;
+			monthVal = true;// exit loop 
+		}
+			
+		} catch (NumberFormatException nfe) {
+			System.out.println("Cannot accept non numberic values ");
+		}
+	}
+}
+	
+	
+public static String getVatreference() {
+	return vatreference;
+}
+public void setVatreference(String vatreference) {
+	String s1= vatreference;
+	// check the length of the string
+	try {if ( s1.length() <12) {
+		System.out.println("Invalid Character length, VAT reference number "
+				+ "must be greeater than 12 characters long");
+		
+	}PVA.vatreference = vatreference; // else assign it as vat reference number
+		
+	} catch (NullPointerException e) {
+		System.out.println("Cannot have null values");
+	}
+		
+}
+
+public static float getGoodsAmount() {
+	return goodsAmount;
+}
+public void setGoodsAmount(float goodsAmount) {
+	// as goods amount can be negative just a try catch bloc for number format exception 
+	try {
+		PVA.goodsAmount = goodsAmount;
+		
+	} catch (NumberFormatException nfe) {
+		System.out.println("Cannot have null values");
+	}	
+}
+}
+
+
+
