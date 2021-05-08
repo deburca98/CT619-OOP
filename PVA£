@@ -139,7 +139,7 @@ public class PVA3 implements ActionListener  {
 				// change appearance on clicking vat required button 
 				vatText.setEnabled(true);
 				qtyText.setEnabled(true);
-				b4.setEnabled(true);// this is to test that button becomes live put in right place 	
+				// this is to test that button becomes live put in right place 	
 				
 			}
 		});
@@ -148,6 +148,7 @@ public class PVA3 implements ActionListener  {
 		@Override
 		// this gets run when i click the ok button 
 	public void actionPerformed(ActionEvent e) {
+			b4.setEnabled(true);
 		int year = 0, month;
 		String vatrefString;
 		float goodsfloat;
@@ -156,12 +157,12 @@ public class PVA3 implements ActionListener  {
 		//using the get text but parse them like joption pane
 		
 		// if fields are enabled pass all to method else just pass mont and year data 
-		if  (vatText.isEnabled()&& qtyText.isEnabled()) {
+		/*if  (vatText.isEnabled()&& qtyText.isEnabled()) {
 			 flag = true;
 		}
 		
-		if (flag==true);{}
-		//if (vatText.isEnabled()&& qtyText.isEnabled()) {
+		if (flag==true);{}*/
+		if (vatText.isEnabled()&& qtyText.isEnabled()) {
 			year=(Integer.parseInt(yearText.getText()));
 			
 			
@@ -175,8 +176,12 @@ public class PVA3 implements ActionListener  {
 			
 			
 			PVA pva = new PVA(year, month, vatrefString, goodsfloat);
-		
-			
+		}else {
+			year=(Integer.parseInt(yearText.getText()));
+			month =(Integer.parseInt(monthText.getText()));
+			PVA pva1 = new PVA(year, month );
+		}
+		b4.setEnabled(true);
 			//year=(Integer.parseInt(yearText.getText()));
 			
 		
@@ -210,8 +215,8 @@ b4.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) { // this needs to catch an io exceprtion as its a file writer 
 			String fileOutString ="C:\\Users\\burked\\eclipse-workspace\\Exam4\\src\\Exam4\\PVAoutput";
-			String pvaDataString= "Year: " + PVA.getYear()+ "  Month " + PVA.getMonth() + " V.A.T. Reference #: " 
-			+ PVA.getVatreference() + "goods Amount " + PVA. getGoodsAmount();
+			String pvaDataString= "Year: " + PVA.getYear()+ "\n"+"Month  #" + PVA.getMonth() +"\n"+ "V.A.T. Reference #: " 
+			+ PVA.getVatreference() + "\n" + "Goods Amount: " + PVA. getGoodsAmount();
 			int userInput;
 			userInput = JOptionPane.showConfirmDialog(null, "Please confirm your Data is correct.", 
 					"Click yes to Save & no to return",JOptionPane.YES_NO_OPTION);
@@ -237,4 +242,3 @@ b4.addActionListener(new ActionListener() {
 		
 	}
 }
-	
