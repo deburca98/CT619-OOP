@@ -15,6 +15,12 @@ public PVA(int year, int month, String vatreference, float goodsAmount) {
 	PVA.vatreference = vatreference;
 	PVA.goodsAmount = goodsAmount;
 }
+
+// two argument constructor for no VAT option
+public PVA(int year, int month) {
+	PVA.year = year;
+	PVA.month = month;
+}
 public static int getYear() {
 	return year;
 }
